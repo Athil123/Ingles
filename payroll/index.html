@@ -1,1 +1,264 @@
+<style>
+  .payroll-directory {
+    --accent: #D2161E;
+    --bg: #F9F7F5;
+    --surface: #FFFFFF;
+    --footer-bg: #F3EFEC;
+    --text-dark: #241F1B;
+    --text-muted: #6E6860;
+    --border: #E9E5DC;
+    --shadow-sm: 0 2px 6px rgba(30, 20, 10, 0.06);
+    font-family: "72", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--bg);
+    padding: 28px 32px 32px;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+  }
+  .payroll-directory * { box-sizing: border-box; }
 
+  /* ---- Heading ---- */
+  .payroll-heading {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    margin: 0 0 10px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #DDD8CC;
+  }
+  .payroll-subtitle {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    margin: 0 0 20px;
+  }
+
+  /* ---- Member grid: 3 columns ---- */
+  .payroll-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 18px;
+  }
+  @media (max-width: 900px) { .payroll-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .payroll-grid { grid-template-columns: 1fr; } }
+
+  /* ---- Member card: photo fills left, info on right ---- */
+  .payroll-member {
+    display: flex;
+    align-items: stretch;
+    background: var(--surface);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .payroll-photo {
+    width: 42%;
+    min-width: 110px;
+    max-width: 140px;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: #D9D4C8;
+  }
+  .payroll-info {
+    flex: 1;
+    padding: 14px 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+  }
+  .payroll-info .name {
+    font-size: 15.5px;
+    font-weight: 800;
+    color: var(--text-dark);
+    line-height: 1.25;
+  }
+  .payroll-info .title {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1.3;
+    margin: 2px 0 8px;
+  }
+  .payroll-info .row {
+    font-size: 12px;
+    color: var(--text-dark);
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin-top: 4px;
+    line-height: 1.35;
+  }
+  .payroll-info .row a { color: var(--text-dark); text-decoration: none; }
+  .payroll-info .row a:hover { color: var(--accent); text-decoration: underline; }
+  .payroll-info .row svg { flex-shrink: 0; color: var(--accent); margin-top: 2px; }
+
+  /* ---- Help footer bar ---- */
+  .payroll-help {
+    background: var(--footer-bg);
+    border-radius: 10px;
+    padding: 16px 22px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .payroll-help-badge {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .payroll-help-main { margin-right: auto; }
+  .payroll-help-main .headline { font-size: 14.5px; font-weight: 800; color: var(--text-dark); }
+  .payroll-help-main .subline { font-size: 12.5px; color: var(--text-muted); margin-top: 2px; }
+  .payroll-help-divider {
+    width: 1px;
+    align-self: stretch;
+    background: #D6D1C5;
+  }
+  .payroll-help-item { display: flex; align-items: center; gap: 8px; }
+  .payroll-help-item .icon-badge {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #FBE7E7;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .payroll-help-item .label { font-size: 11px; color: var(--text-muted); line-height: 1.3; }
+  .payroll-help-item .value { font-size: 13.5px; font-weight: 700; color: var(--text-dark); line-height: 1.3; }
+  .payroll-help-item a { color: var(--text-dark); text-decoration: none; }
+  .payroll-help-item a:hover { color: var(--accent); text-decoration: underline; }
+
+  @media (max-width: 560px) {
+    .payroll-help { flex-direction: column; align-items: flex-start; }
+    .payroll-help-divider { display: none; }
+    .payroll-help-main { margin-right: 0; }
+  }
+</style>
+
+<div class="payroll-directory">
+  <div class="payroll-heading">Meet the Team</div>
+  <p class="payroll-subtitle" id="payroll-subtitle"></p>
+
+  <div class="payroll-grid" id="payroll-grid"></div>
+
+  <div class="payroll-help">
+    <div class="payroll-help-badge" id="help-badge"></div>
+    <div class="payroll-help-main">
+      <div class="headline" id="help-headline"></div>
+      <div class="subline" id="help-subline"></div>
+    </div>
+    <div class="payroll-help-divider"></div>
+    <div class="payroll-help-item">
+      <div class="icon-badge" id="help-phone-icon"></div>
+      <div>
+        <div class="label" id="help-phone-label"></div>
+        <div class="value" id="help-phone-value"></div>
+      </div>
+    </div>
+    <div class="payroll-help-divider"></div>
+    <div class="payroll-help-item">
+      <div class="icon-badge" id="help-email-icon"></div>
+      <div class="value" id="help-email-value"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  // ---- DATA SOURCE ------------------------------------------------
+  // Swap point: replace this static object with a fetch() to a
+  // destination / OData service, then call renderPayrollTeam(data).
+  var DEFAULT_AVATAR = "images/payroll/default-avatar.jpg";
+
+  var payrollData = {
+    subtitle: "Our payroll team is here to help! Reach out to any of us if you have questions.",
+    members: [
+      { name: "Brittney Main", title: "Director, Payroll", ext: "619", email: "bmain@ingles-markets.com", photo: "images/payroll/brittney-main.jpg" },
+      { name: "Katie Stover", title: "Payroll Manager", ext: "571", email: "kstover@ingles-markets.com", photo: "images/payroll/katie-stover.jpg" },
+      { name: "Brian Ward", title: "Lead Payroll Clerk", ext: "582", email: "bward@ingles-markets.com", photo: "images/payroll/brian-ward.jpg" },
+      { name: "Chelsea Payne", title: "Payroll Clerk, Districts 1, 6 & 8", ext: "468", email: "cpayne@ingles-markets.com", photo: "images/payroll/chelsea-payne.jpg" },
+      { name: "Kassandra Buell", title: "Payroll Clerk", ext: "332", email: "kbuell@ingles-markets.com", photo: "images/payroll/kassandra-buell.jpg" },
+      { name: "Corey Link", title: "Payroll Clerk", ext: "213", email: "clink@ingles-markets.com", photo: "images/payroll/corey-link.jpg" }
+    ],
+    help: {
+      headline: "Need payroll help?",
+      subline: "We're just a call or email away.",
+      phoneLabel: "Payroll Help Line",
+      ext: "619",
+      email: "payroll@ingles-markets.com"
+    }
+  };
+
+  var phoneIcon = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>';
+  var mailIcon = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>';
+  var headsetIcon = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 14v-2a9 9 0 0 1 18 0v2"/><path d="M21 15a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h3z"/><path d="M3 15a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2H3z"/><path d="M15 20a2 2 0 0 1-2 2h-2"/></svg>';
+
+  var FALLBACK_AVATAR_DATA_URI =
+    'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 150">' +
+        '<rect width="140" height="150" fill="#D9D4C8"/>' +
+        '<circle cx="70" cy="58" r="26" fill="#C3BCAC"/>' +
+        '<path d="M20 150c0-30 22-52 50-52s50 22 50 52" fill="#C3BCAC"/>' +
+      '</svg>'
+    );
+
+  function escapeHtml(s) {
+    return String(s || "").replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  function onErrorFallback() {
+    return 'this.onerror=null;this.src=\'' + FALLBACK_AVATAR_DATA_URI + '\';';
+  }
+
+  function memberCard(m) {
+    var photoSrc = escapeHtml(m.photo || DEFAULT_AVATAR);
+    var emailRow = m.email
+      ? '<div class="row">' + mailIcon + '<a href="mailto:' + escapeHtml(m.email) + '">' + escapeHtml(m.email) + '</a></div>'
+      : "";
+    return (
+      '<div class="payroll-member">' +
+        '<img class="payroll-photo" src="' + photoSrc + '" alt="' + escapeHtml(m.name) + '" onerror="' + onErrorFallback() + '" />' +
+        '<div class="payroll-info">' +
+          '<div class="name">' + escapeHtml(m.name) + '</div>' +
+          '<div class="title">' + escapeHtml(m.title) + '</div>' +
+          '<div class="row">' + phoneIcon + '<span>Ext. ' + escapeHtml(m.ext) + '</span></div>' +
+          emailRow +
+        '</div>' +
+      '</div>'
+    );
+  }
+
+  function renderPayrollTeam(data) {
+    document.getElementById("payroll-subtitle").textContent = data.subtitle;
+    document.getElementById("payroll-grid").innerHTML = data.members.map(memberCard).join("");
+
+    document.getElementById("help-badge").innerHTML = headsetIcon;
+    document.getElementById("help-headline").textContent = data.help.headline;
+    document.getElementById("help-subline").textContent = data.help.subline;
+
+    document.getElementById("help-phone-icon").innerHTML = phoneIcon;
+    document.getElementById("help-phone-label").textContent = data.help.phoneLabel;
+    document.getElementById("help-phone-value").textContent = "Ext. " + data.help.ext;
+
+    document.getElementById("help-email-icon").innerHTML = mailIcon;
+    document.getElementById("help-email-value").innerHTML =
+      '<a href="mailto:' + escapeHtml(data.help.email) + '">' + escapeHtml(data.help.email) + '</a>';
+  }
+
+  renderPayrollTeam(payrollData);
+})();
+</script>

@@ -22,11 +22,12 @@
 
   .hr-hero {
     display: flex;
-    gap: 24px;
+    gap: 32px;
     flex-wrap: wrap;
+    justify-content: flex-start;
     margin-bottom: 32px;
   }
-  .hr-hero-text { flex: 1 1 320px; min-width: 260px; }
+  .hr-hero-text { flex: 0 1 360px; min-width: 260px; }
   .hr-hero-text h1 {
     font-size: 34px;
     line-height: 1.15;
@@ -44,8 +45,8 @@
   }
 
   .hr-head-card {
-    flex: 1 1 320px;
-    max-width: 420px;
+    flex: 0 1 400px;
+    max-width: 400px;
     border: 1.5px solid var(--accent);
     border-radius: 14px;
     background: var(--panel-bg);
@@ -118,10 +119,28 @@
 
   .hr-member-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 18px 20px;
     padding: 18px 20px;
   }
+  .hr-member {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .hr-member-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: #EEEBE4;
+    border: 1px solid #E0DACD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--accent);
+  }
+  .hr-member-info { min-width: 0; }
   .hr-member .name { font-size: 13.5px; font-weight: 700; color: var(--text-dark); line-height: 1.3; }
   .hr-member .title { font-size: 11.5px; color: var(--text-muted); margin: 2px 0 6px; line-height: 1.3; }
   .hr-member .row {
@@ -271,16 +290,21 @@
     });
   }
 
+  var avatarIcon = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>';
+
   function memberCard(m) {
     var emailRow = m.email
       ? '<div class="row">' + mailIcon + '<a href="mailto:' + escapeHtml(m.email) + '">' + escapeHtml(m.email) + '</a></div>'
       : "";
     return (
       '<div class="hr-member">' +
-        '<div class="name">' + escapeHtml(m.name) + '</div>' +
-        '<div class="title">' + escapeHtml(m.title) + '</div>' +
-        '<div class="row">' + phoneIcon + '<span>Ext. ' + escapeHtml(m.ext) + '</span></div>' +
-        emailRow +
+        '<div class="hr-member-avatar">' + avatarIcon + '</div>' +
+        '<div class="hr-member-info">' +
+          '<div class="name">' + escapeHtml(m.name) + '</div>' +
+          '<div class="title">' + escapeHtml(m.title) + '</div>' +
+          '<div class="row">' + phoneIcon + '<span>Ext. ' + escapeHtml(m.ext) + '</span></div>' +
+          emailRow +
+        '</div>' +
       '</div>'
     );
   }

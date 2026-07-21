@@ -1,0 +1,313 @@
+<style>
+  .hr-directory {
+    --accent: #E35336;
+    --bg: #F5F5DC;
+    --panel-bg: #FFFFFF;
+    --text-dark: #2B2420;
+    --text-muted: #7A7268;
+    font-family: "72", "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+    padding: 24px 20px 48px;
+    box-sizing: border-box;
+  }
+  .hr-directory * { box-sizing: border-box; }
+
+  .hr-breadcrumb {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.03em;
+    margin-bottom: 18px;
+  }
+  .hr-breadcrumb span { color: var(--accent); font-weight: 600; }
+
+  .hr-hero {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+  .hr-hero-text { flex: 1 1 320px; min-width: 260px; }
+  .hr-hero-text h1 {
+    font-size: 34px;
+    line-height: 1.15;
+    margin: 0 0 12px;
+    color: var(--text-dark);
+    font-weight: 800;
+  }
+  .hr-hero-text h1 .accent { color: var(--accent); }
+  .hr-hero-text p {
+    font-size: 14.5px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 420px;
+    margin: 0;
+  }
+
+  .hr-head-card {
+    flex: 1 1 320px;
+    max-width: 420px;
+    border: 1.5px solid var(--accent);
+    border-radius: 14px;
+    background: var(--panel-bg);
+    padding: 18px 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    position: relative;
+  }
+  .hr-head-badge {
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+  .hr-head-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
+    background: #EEEBE4;
+    border: 1px solid #E0DACD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--accent);
+  }
+  .hr-head-info { padding-top: 4px; }
+  .hr-head-info .name { font-size: 17px; font-weight: 700; color: var(--text-dark); }
+  .hr-head-info .title { font-size: 12.5px; color: var(--accent); font-weight: 600; margin: 2px 0 8px; }
+  .hr-head-info .contact { font-size: 12px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; margin-top: 3px; }
+
+  .hr-panel {
+    border: 1.5px solid var(--accent);
+    border-radius: 16px;
+    background: var(--panel-bg);
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .hr-panel-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 20px;
+    border-bottom: 1px solid #F1D9D2;
+  }
+  .hr-panel-header .icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #FCEDE9;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .hr-panel-header h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0;
+  }
+
+  .hr-member-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 18px 20px;
+    padding: 18px 20px;
+  }
+  .hr-member .name { font-size: 13.5px; font-weight: 700; color: var(--text-dark); line-height: 1.3; }
+  .hr-member .title { font-size: 11.5px; color: var(--text-muted); margin: 2px 0 6px; line-height: 1.3; }
+  .hr-member .row {
+    font-size: 11.5px;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 2px;
+  }
+  .hr-member .row a { color: var(--text-dark); text-decoration: none; }
+  .hr-member .row a:hover { color: var(--accent); text-decoration: underline; }
+  .hr-member .row svg { flex-shrink: 0; }
+
+  @media (max-width: 600px) {
+    .hr-hero { flex-direction: column; }
+    .hr-hero-text h1 { font-size: 26px; }
+  }
+</style>
+
+<div class="hr-directory">
+  <div class="hr-breadcrumb">HOME &nbsp;&gt;&nbsp; <span>HUMAN RESOURCES</span></div>
+
+  <div class="hr-hero">
+    <div class="hr-hero-text">
+      <h1>Meet the<br><span class="accent">HR Team</span></h1>
+      <p>Our HR team is here to support our associates, leaders and stores every day. Get to know the people behind the support.</p>
+    </div>
+    <div class="hr-head-card">
+      <div class="hr-head-badge">★ DEPARTMENT HEAD</div>
+      <div class="hr-head-avatar">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+      </div>
+      <div class="hr-head-info">
+        <div class="name" id="head-name"></div>
+        <div class="title" id="head-title"></div>
+        <div class="contact" id="head-ext"></div>
+        <div class="contact" id="head-email"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="hr-teams"></div>
+</div>
+
+<script>
+(function () {
+  // ---- DATA SOURCE ----------------------------------------------------
+  // Swap point: replace this static object with a fetch() to a
+  // destination / OData service (e.g. SuccessFactors EC) that returns
+  // the same shape, then call renderDirectory(data) with the result.
+  var directoryData = {
+    departmentHead: {
+      name: "Cynthia Brooks",
+      title: "Vice President, Human Resources",
+      ext: "232",
+      email: "cbrooks@ingles-markets.com"
+    },
+    teams: [
+      {
+        teamName: "Benefits & HRIS Team",
+        members: [
+          { name: "Michele Costa", title: "Director, HR & Benefits", ext: "231", email: "mcosta@ingles-markets.com" },
+          { name: "Amber Marlowe Hudgins", title: "Senior Manager, HR Technology", ext: "309", email: "amarlowe@ingles-markets.com" },
+          { name: "Aaron Groller", title: "Benefits HRIS Analyst", ext: "169", email: "agroller@ingles-markets.com" },
+          { name: "Jill Brackins", title: "HRIS Analyst", ext: "634", email: "jbrackins@ingles-markets.com" },
+          { name: "Jillian Gleeson", title: "SuccessFactors Analyst, Recruiting/Onboarding", ext: "636", email: "jgleeson@ingles-markets.com" },
+          { name: "Melanie Johnson", title: "Benefits Coordinator", ext: "647", email: "mjohnson@ingles-markets.com" },
+          { name: "Rachael Haynes-Wood", title: "Leave Administrator", ext: "287", email: "rhaynes-wood@ingles-markets.com" },
+          { name: "Stacy Ogle", title: "HRIS Specialist", ext: "346", email: "sogle@ingles-markets.com" }
+        ]
+      },
+      {
+        teamName: "Customer Service Team",
+        members: [
+          { name: "Beau Muse", title: "Human Resources Coordinator", ext: "304", email: "bmuse@ingles-markets.com" },
+          { name: "Emily McGlynn", title: "Human Resources Assistant", ext: "657", email: "EMcGlynn@ingles-markets.com" },
+          { name: "Jesse Rhodarmer", title: "Human Resources Assistant", ext: "8049", email: "jrhodarmer@ingles-markets.com" }
+        ]
+      },
+      {
+        teamName: "Associate Relations and Recruiting Team",
+        members: [
+          { name: "Paul Hughart", title: "Director, Human Resources", ext: "633", email: "phughart@ingles-markets.com" },
+          { name: "Blair Lofland", title: "HR Operations Specialist", ext: "8019", email: "blofland@ingles-markets.com" },
+          { name: "Jordan Davis", title: "Senior Assistant, Human Resources", ext: "627", email: "jdavis@ingles-markets.com" },
+          { name: "Ken Decoteau", title: "HR Manager", ext: "234", email: "kdecoteau@ingles-markets.com" },
+          { name: "Sarah Kurle", title: "Human Resources Generalist", ext: "295", email: "skurle@ingles-markets.com" },
+          { name: "Vanessa Howie", title: "Human Resources Generalist", ext: "467", email: "vhowie@ingles-markets.com" },
+          { name: "Kent Ryburn", title: "Human Resources Generalist", ext: "490", email: "kryburn@ingles-markets.com" }
+        ]
+      },
+      {
+        teamName: "Risk Management Team",
+        members: [
+          { name: "Stephanie Keeter", title: "Director, Risk Management", ext: "250", email: "skeeter@ingles-markets.com" },
+          { name: "Rod Whiteside", title: "Claims Quality Assurance Manager", ext: "394", email: "rwhiteside@ingles-markets.com" },
+          { name: "Dan Puryear", title: "Claim Manager", ext: "267", email: "dpuryear@ingles-markets.com" },
+          { name: "Alec Bridges", title: "Adjuster", ext: "329", email: "abridges@ingles-markets.com" },
+          { name: "Brody Hartman", title: "Adjuster", ext: "430", email: "bhartman@ingles-markets.com" },
+          { name: "Gregory Hostetler", title: "Senior Claims Adjuster", ext: "430", email: "ghostetler@ingles-markets.com" },
+          { name: "Lisa Yates", title: "Adjuster", ext: "623", email: "lyates@ingles-markets.com" },
+          { name: "Patrick Poole", title: "General Liability Adjuster", ext: "376", email: "rtrexler@ingles-markets.com" }
+        ]
+      },
+      {
+        teamName: "Safety Team",
+        members: [
+          { name: "Chuck Cronk", title: "Director, Safety", ext: "303", email: "ccronk@ingles-markets.com" },
+          { name: "Johnny West", title: "Safety Coordinator", ext: "654", email: "jwest@ingles-markets.com" },
+          { name: "Anna Sellers", title: "Safety Services Specialist", ext: "644", email: "asellers@ingles-markets.com" }
+        ]
+      },
+      {
+        teamName: "Training and Development Team",
+        members: [
+          { name: "Alyse Cook", title: "Director, Training and Development", ext: "257", email: "acook@ingles-markets.com" },
+          { name: "Brandon Arnold", title: "Manager, Online Learning & Development", ext: "8134", email: "" },
+          { name: "Angel Rice", title: "HR Coordinator, District 1 & 10", ext: "649", email: "arice@ingles-markets.com" },
+          { name: "Jennifer Burt", title: "HR Coordinator, District 2", ext: "773", email: "jburt@ingles-markets.com" },
+          { name: "April Johnson", title: "HR Coordinator, District 3", ext: "735", email: "ajohnson@ingles-markets.com" },
+          { name: "Nichole Schweitzer", title: "HR Coordinator, District 4", ext: "748", email: "nschweitzer@ingles-markets.com" },
+          { name: "Sandra Brown", title: "HR Coordinator, District 6", ext: "757", email: "sbrown@ingles-markets.com" },
+          { name: "Katlyn Gill", title: "HR Coordinator, District 6", ext: "738", email: "kgill@ingles-markets.com" },
+          { name: "Justin Hubbard", title: "HR Coordinator, District 7", ext: "791", email: "jhubbard@ingles-markets.com" },
+          { name: "Kordell Brown", title: "HR Coordinator, District 8", ext: "758", email: "kbrown@ingles-markets.com" },
+          { name: "Ana Ochoa", title: "HR Coordinator, District 9", ext: "781", email: "aochoa@ingles-markets.com" }
+        ]
+      },
+      {
+        teamName: "Workforce Management Team",
+        members: [
+          { name: "Christa Hernandez", title: "Director, Workforce Management", ext: "796", email: "chernandez@ingles-markets.com" },
+          { name: "James Higdon", title: "Workforce Management Analyst", ext: "758", email: "jhigdon@ingles-markets.com" }
+        ]
+      }
+    ]
+  };
+
+  var phoneIcon = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>';
+  var mailIcon = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>';
+  var teamIcon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.3 3.1-6 7-6s7 2.7 7 6"/><circle cx="17" cy="9" r="2.5"/><path d="M22 20c0-2.6-2-4.8-4.7-5.6"/></svg>';
+
+  function escapeHtml(s) {
+    return String(s || "").replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  function memberCard(m) {
+    var emailRow = m.email
+      ? '<div class="row">' + mailIcon + '<a href="mailto:' + escapeHtml(m.email) + '">' + escapeHtml(m.email) + '</a></div>'
+      : "";
+    return (
+      '<div class="hr-member">' +
+        '<div class="name">' + escapeHtml(m.name) + '</div>' +
+        '<div class="title">' + escapeHtml(m.title) + '</div>' +
+        '<div class="row">' + phoneIcon + '<span>Ext. ' + escapeHtml(m.ext) + '</span></div>' +
+        emailRow +
+      '</div>'
+    );
+  }
+
+  function teamPanel(team) {
+    var cards = team.members.map(memberCard).join("");
+    return (
+      '<div class="hr-panel">' +
+        '<div class="hr-panel-header">' +
+          '<div class="icon">' + teamIcon + '</div>' +
+          '<h2>' + escapeHtml(team.teamName) + '</h2>' +
+        '</div>' +
+        '<div class="hr-member-grid">' + cards + '</div>' +
+      '</div>'
+    );
+  }
+
+  function renderDirectory(data) {
+    document.getElementById("head-name").textContent = data.departmentHead.name;
+    document.getElementById("head-title").textContent = data.departmentHead.title;
+    document.getElementById("head-ext").innerHTML = phoneIcon + " <span>Ext. " + escapeHtml(data.departmentHead.ext) + "</span>";
+    document.getElementById("head-email").innerHTML = mailIcon + ' <a href="mailto:' + escapeHtml(data.departmentHead.email) + '" style="color:inherit;text-decoration:none;">' + escapeHtml(data.departmentHead.email) + "</a>";
+
+    var container = document.getElementById("hr-teams");
+    container.innerHTML = data.teams.map(teamPanel).join("");
+  }
+
+  renderDirectory(directoryData);
+})();
+</script>
